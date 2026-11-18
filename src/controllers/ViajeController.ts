@@ -25,78 +25,74 @@ export class ViajeController {
         this.view.renderLayout();
         this.mostrarInicio();
 
-        document.addEventListener("click", event => {
-            const target = event.target as HTMLElement;
+document.addEventListener("click", event => {
+    const target = event.target as HTMLElement;
 
-            const photoButton = target.closest<HTMLButtonElement>("#select-photo");
+    const photoButton = target.closest<HTMLButtonElement>("#select-photo");
 
-            if (photoButton) {
-                event.preventDefault();
-                document.querySelector<HTMLInputElement>("#imagen")?.click();
-                return;
-            }
+    if (photoButton) {
+        document.querySelector<HTMLInputElement>("#imagen")?.click();
+        return;
+    }
 
-            const removeButton = target.closest<HTMLButtonElement>("#remove-photo");
+    const removeButton = target.closest<HTMLButtonElement>("#remove-photo");
 
-            if (removeButton) {
-                event.preventDefault();
-                this.quitarFotografia();
-                return;
-            }
+    if (removeButton) {
+        this.quitarFotografia();
+        return;
+    }
 
-            const ratingButton = target.closest<HTMLButtonElement>("[data-rating]");
+    const ratingButton = target.closest<HTMLButtonElement>("[data-rating]");
 
-            if (ratingButton) {
-                event.preventDefault();
-                this.seleccionarCalificacion(Number(ratingButton.dataset.rating));
-                return;
-            }
+    if (ratingButton) {
+        this.seleccionarCalificacion(Number(ratingButton.dataset.rating));
+        return;
+    }
 
-            const button = target.closest<HTMLElement>("[data-action]");
+    const button = target.closest<HTMLElement>("[data-action]");
 
-            if (!button) return;
+    if (!button) return;
 
-            const action = button.dataset.action;
-            const id = Number(button.dataset.id);
+    const action = button.dataset.action;
+    const id = Number(button.dataset.id);
 
-            switch (action) {
-                case "home":
-                    this.mostrarInicio();
-                    break;
+    switch (action) {
+        case "home":
+            this.mostrarInicio();
+            break;
 
-                case "form":
-                    this.mostrarFormulario();
-                    break;
+        case "form":
+            this.mostrarFormulario();
+            break;
 
-                case "trips":
-                    this.mostrarViajes();
-                    break;
+        case "trips":
+            this.mostrarViajes();
+            break;
 
-                case "details":
-                    this.mostrarDetalles(id);
-                    break;
+        case "details":
+            this.mostrarDetalles(id);
+            break;
 
-                case "edit":
-                    this.editar(id);
-                    break;
+        case "edit":
+            this.editar(id);
+            break;
 
-                case "delete":
-                    this.eliminar(id);
-                    break;
+        case "delete":
+            this.eliminar(id);
+            break;
 
-                case "close-modal":
-                    document.querySelector("#modal-container")!.innerHTML = "";
-                    break;
+        case "close-modal":
+            document.querySelector("#modal-container")!.innerHTML = "";
+            break;
 
-                case "clear-filters":
-                    this.busqueda = "";
-                    this.categoria = "Todas";
-                    this.orden = "recientes";
-                    this.mostrarViajes();
-                    break;
-            }
-        });
-
+        case "clear-filters":
+            this.busqueda = "";
+            this.categoria = "Todas";
+            this.orden = "recientes";
+            this.mostrarViajes();
+            break;
+    }
+});
         document.addEventListener("submit", event => {
             const target = event.target as HTMLFormElement;
 
