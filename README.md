@@ -68,11 +68,3 @@ TripBook utiliza SQL.js para ejecutar SQLite en el navegador. La base de datos s
 4. Utilizar `npm run build` como comando de compilación.
 5. Configurar `dist` como directorio de salida.
 6. Desplegar el proyecto.
-
-## Repositorio
-
-Pendiente de publicación.
-
-## Aplicación publicada
-
-Pendiente de despliegue.
